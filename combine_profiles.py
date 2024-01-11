@@ -28,10 +28,9 @@ def read_individual_xmls(profile_directory, manifest):
     else:
         package_profiles = None
 
-    def process_profile_file(filepath):
+    def process_profile_file(filepath, parent_profile_name):
         tree = ET.parse(filepath)
         root = tree.getroot()
-        parent_profile_name = filepath.split(os.path.sep)[-3]  # Get parent folder name
         individual_xmls.setdefault(parent_profile_name, []).append(root)
 
     for root, _, files in os.walk(profile_directory):
@@ -41,7 +40,7 @@ def read_individual_xmls(profile_directory, manifest):
                 relative_path = os.path.relpath(file_path, profile_directory)
                 parent_profile_name = relative_path.split(os.path.sep)[0]
                 if not manifest or (manifest and parent_profile_name in package_profiles):
-                    process_profile_file(file_path)
+                    process_profile_file(file_path, parent_profile_name)
 
     return individual_xmls, package_profiles
 
