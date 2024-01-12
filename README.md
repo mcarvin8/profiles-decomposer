@@ -1,5 +1,7 @@
 # Salesforce Profiles Decomposer
 
+**NOTICE**: This repository has been replaced by https://github.com/mcarvin8/sfdx-decomposer. Any updates required will be pushed to the sfdx-decomposer repository instead of this one.
+
 This project will take Salesforce profile meta files created by the Salesforce CLI and decompose them into separate files for version control using Python 3.
 
 `- python3 ./separate_profiles.py`
